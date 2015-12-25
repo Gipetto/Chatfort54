@@ -1,0 +1,14 @@
+twilio:
+    accountSid: TWILIO_ACCOUNT_SID
+    IPMServiceSid: TWILIO_IPM_SERVICE_SID
+    apiKey: TWILIO_API_KEY
+    apiSecret: TWILIO_API_SECRET
+app:
+    name: APP_NAME
+    debug: false
+mybb:
+    allowRandom: false
+services:
+    app:
+        api_token_authenticator:
+            class: Chat\Auth\TokenAuthenticator
