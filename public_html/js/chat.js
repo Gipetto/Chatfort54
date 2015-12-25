@@ -203,7 +203,7 @@ jQuery(function($) {
 		var _channel;
 
 		this.init = function() {
-			$.getJSON('/token', initCallback)
+			$.getJSON('token', initCallback)
 				.fail(function(e) {
 					console.log(e);
 				});
