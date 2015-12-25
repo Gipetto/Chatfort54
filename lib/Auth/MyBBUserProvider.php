@@ -21,6 +21,9 @@ class MyBBUserProvider implements UserProviderInterface {
 	 * @TODO - there has to be a less heavy way of doing this...
 	 */
 	public function init() {
+		global $db, $cache, $plugins;
+		global $groupscache, $forum_cache, $fpermcache, $mybb, $cached_forum_permissions_permissions, $cached_forum_permissions;
+
 		if (!defined('IN_MYBB')) {
 			define('IN_MYBB', true);
 		}
@@ -30,7 +33,7 @@ class MyBBUserProvider implements UserProviderInterface {
 
 		try {
 			if (isset($mybb)) {
-				$session = new session();
+				$session = new \session();
 				$session->init();
 				$mybb->session = &$session;
 
