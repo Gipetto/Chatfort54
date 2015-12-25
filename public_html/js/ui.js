@@ -8,12 +8,13 @@ jQuery(function($) {
 		$input = $('#message-input', $main),
 		$menu = $('#menu'),
 		$users = $('#users-list', $menu),
-		$menuHeading = $('.menu-heading', $menu);
+		$menuHeading = $('.menu-heading', $menu),
+		$menuFooter = $('.menu-footer', $menu);
 
 	$(window).on('resize', function(e) {
 		$scroller.height($(window).height() - $header.outerHeight(true) - $input.outerHeight(true));
 		$scroller.width($main.width());
-		$users.height($(window).height() - $menuHeading.outerHeight(true) - 15);
+		$users.height($(window).height() - $menuHeading.outerHeight(true) - $menuFooter.outerHeight(true) - 15);
 	}).trigger('resize');
 
 	$messages.on('DOMNodeInserted', function(e) {

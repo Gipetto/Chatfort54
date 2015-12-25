@@ -97,6 +97,19 @@ body {
 			}
 		}
 	}
+
+	.menu-footer {
+		text-align: center;
+
+		p {
+			margin: 1em 1em 0.5em 1em;
+			font-size: 0.7em;
+
+			a {
+				color: #fff;
+			}
+		}
+	}
 }
 
 .messages-scroller {

@@ -74,6 +74,13 @@ body {
         #menu #users #users-list ul li {
           font-size: 0.9em;
           font-style: italic; }
+  #menu .menu-footer {
+    text-align: center; }
+    #menu .menu-footer p {
+      margin: 1em 1em 0.5em 1em;
+      font-size: 0.7em; }
+      #menu .menu-footer p a {
+        color: #fff; }
 
 .messages-scroller {
   position: absolute;
