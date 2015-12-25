@@ -4,6 +4,11 @@ use Silex\Application;
 use Monolog\Logger;
 use Monolog\Handler\ErrorLogHandler;
 use Monolog\Formatter\LineFormatter;
+use Symfony\Component\Debug\ErrorHandler;
+use Symfony\Component\Debug\ExceptionHandler;
+
+ErrorHandler::register();
+ExceptionHandler::register();
 
 $app = new Application();
 
