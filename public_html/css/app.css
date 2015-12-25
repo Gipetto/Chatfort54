@@ -52,6 +52,8 @@ body {
   #menu .menu-heading {
     padding-top: 1em;
     text-align: center; }
+    #menu .menu-heading .logo {
+      margin-bottom: -5px; }
     #menu .menu-heading .upper {
       border-top: 1px solid #444;
       background-color: #222;
