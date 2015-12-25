@@ -32,6 +32,8 @@ class MyBBUserProvider implements UserProviderInterface {
 		@include_once MYBB_ROOT . 'inc/class_session.php';
 
 		try {
+			ob_start();
+
 			if (isset($mybb)) {
 				$session = new \session();
 				$session->init();
@@ -47,6 +49,8 @@ class MyBBUserProvider implements UserProviderInterface {
 					$this->myBB->user['username'] = uniqid('user');
 				}
 			}
+
+			ob_end_clean();
 		} catch (\Exception $e) {
 			throw new AuthenticationException('Could not initialize MYBB application for authentication.');
 		}
