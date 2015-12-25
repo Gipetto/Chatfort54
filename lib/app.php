@@ -2,6 +2,7 @@
 
 use Silex\Application;
 use Monolog\Logger;
+use Monolog\Handler\ErrorLogHandler;
 use Monolog\Formatter\LineFormatter;
 
 $app = new Application();
@@ -16,9 +17,12 @@ $app->register(new Silex\Provider\MonologServiceProvider(), [
 	'monolog.logfile' => DOCROOT . '/app.log',
 ]);
 $app['monolog'] = $app->share($app->extend('monolog', function(Logger $log, Application $app) {
+	$log->pushHandler(new ErrorLogHandler(ErrorLogHandler::OPERATING_SYSTEM, Logger::WARNING));
+
 	foreach ($log->getHandlers() as $handler) {
 		$handler->setFormatter(new LineFormatter(null, 'c', true, true));
 	}
+
 	return $log;
 }));
 
