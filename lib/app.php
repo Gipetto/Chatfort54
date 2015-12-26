@@ -6,6 +6,9 @@ use Monolog\Handler\ErrorLogHandler;
 use Monolog\Formatter\LineFormatter;
 use Symfony\Component\Debug\ErrorHandler;
 use Symfony\Component\Debug\ExceptionHandler;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 ErrorHandler::register();
 ExceptionHandler::register();
@@ -30,6 +33,15 @@ $app['monolog'] = $app->share($app->extend('monolog', function(Logger $log, Appl
 
 	return $log;
 }));
+
+$app->after(function(Request $request, Response $response) {
+	// never, ever, cache... anything.
+	$response->setPrivate();
+	$response->headers->addCacheControlDirective('no-cache', true);
+	$response->headers->addCacheControlDirective('max-age', 0);
+	$response->headers->addCacheControlDirective('must-revalidate', true);
+	$response->headers->addCacheControlDirective('no-store', true);
+});
 
 require_once DOCROOT . '/lib/routes.php';
 require_once DOCROOT . '/lib/firewalls.php';

@@ -3,6 +3,7 @@
 - Properly format javascript dates
 - Log promise rejections, error handling TBD
 - Don't output meta information if a user is responding to its own message within 10 minutes.
+- Don't cache any output, set cache control to private
 
 
 # 0.1.0
