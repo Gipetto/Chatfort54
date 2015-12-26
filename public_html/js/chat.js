@@ -51,8 +51,6 @@ jQuery(function($) {
 
 		// format this message for HTML output
 		var formatMessage = function(messageBody) {
-			var _self = this;
-
 			var $msg = $('<span></span>', {
 				'class': 'message',
 				'html': messageBody
@@ -105,6 +103,9 @@ jQuery(function($) {
 	}
 
 	function ChatBox(options) {
+		this.chatBox = $(options.selector);
+		var colors = [];
+		var users = {};
 		var lastMessage = null;
 		var omitMetaTimeout = 60 * 10 * 1000;
 
@@ -114,7 +115,6 @@ jQuery(function($) {
 		};
 
 		var getUserColor = function(userName) {
-			var _self = this;
 			if (userName in users) {
 				return users[userName];
 			}
@@ -177,10 +177,7 @@ jQuery(function($) {
 			chatInput.prop('disabled', false);
 		};
 
-		this.chatBox = $(options.selector);
 		var chatInput = listenTo(options.input);
-		var colors = [];
-		var users = {};
 	}
 
 	function UserList(options) {
