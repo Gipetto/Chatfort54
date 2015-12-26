@@ -20,7 +20,7 @@ class MyBBUserProvider implements UserProviderInterface {
 	/**
 	 * @TODO - there has to be a less heavy way of doing this...
 	 */
-	public function init() {
+	public function init($username = null) {
 		global $db, $cache, $plugins;
 		global $groupscache, $forum_cache, $fpermcache, $mybb, $cached_forum_permissions_permissions, $cached_forum_permissions;
 
@@ -46,7 +46,7 @@ class MyBBUserProvider implements UserProviderInterface {
 					'username' => null,
 				];
 				if ($this->app['config']['mybb']['allowRandom']) {
-					$this->myBB->user['username'] = uniqid('user');
+					$this->myBB->user['username'] = $username;
 				}
 			}
 
@@ -58,15 +58,12 @@ class MyBBUserProvider implements UserProviderInterface {
 
 	public function loadUserByUsername($username) {
 		if (!$this->myBB) {
-			$this->init();
+			$this->init($username);
 		}
 		return new MyBBUser($this->myBB->user['username']);
 	}
 
 	public function refreshUser(UserInterface $user) {
-		if (!$this->myBB) {
-			$this->init();
-		}
 		return $this->loadUserByUsername($user->getUsername());
 	}
 
