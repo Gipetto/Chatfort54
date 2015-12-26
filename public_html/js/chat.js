@@ -11,9 +11,10 @@ jQuery(function($) {
 	var accessManager;
 	var messagingClient;
 
-	function ChatMessage(message) {
+	function ChatMessage(message, printMeta) {
 		var _message = message;
 		var _userColor = '#000';
+		var _printMeta = (typeof printMeta !== 'undefined' ? printMeta : true);
 
 		// run all processing methods against the message
 		var processMessage = function(messageText) {
@@ -37,10 +38,12 @@ jQuery(function($) {
 		var fixUpMessage = function(message) {
 			var $message = $('<div></div>').append($(message));
 
-			// we can't have <pre> elements being the first item
-			// they format the entire thing funny, and that ain't funny
-			if ($message.find(':first').is('pre')) {
-				$message.prepend($('<p>&nbsp;</p>'));
+			if (_printMeta) {
+				// we can't have <pre> elements being the first item
+				// they format the entire thing funny, and that ain't funny
+				if ($message.find(':first').is('pre')) {
+					$message.prepend($('<p>&nbsp;</p>'));
+				}
 			}
 
 			return $message.html();
@@ -55,25 +58,27 @@ jQuery(function($) {
 				'html': messageBody
 			});
 
-			var $time = $('<span></span>', {
-				'class': 'time',
-				'text': getTime(message.timestamp)
-			});
+			if (_printMeta) {
+				var $time = $('<span></span>', {
+					'class': 'time',
+					'text': getTime(message.timestamp)
+				});
 
-			var $user = $('<span></span>', {
-				'class': 'username',
-				'text': _message.author
-			}).css({ "color": _userColor });
+				var $user = $('<span></span>', {
+					'class': 'username',
+					'text': _message.author
+				}).css({ "color": _userColor });
 
-			if (_message.author === chatApp.getIdentity()) {
-				$user.addClass('me');
+				if (_message.author === chatApp.getIdentity()) {
+					$user.addClass('me');
+				}
+
+				var $meta = $('<span></span>', {
+					'class': 'meta'
+				}).append($time).append($user);
+
+				$msg.find(':first').prepend($meta);
 			}
-
-			var $meta = $('<span></span>', {
-				'class': 'meta'
-			}).append($time).append($user);
-
-			$msg.find(':first').prepend($meta);
 
 			return $('<div></div>', {
 				'class': 'message-container'
@@ -100,6 +105,9 @@ jQuery(function($) {
 	}
 
 	function ChatBox(options) {
+		var lastMessage = null;
+		var omitMetaTimeout = 60 * 10 * 1000;
+
 		// http://www.paulirish.com/2009/random-hex-color-code-snippets/
 		var randomColor = function() {
 			return '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -123,9 +131,18 @@ jQuery(function($) {
 		};
 
 		this.addMessage = function(message) {
-			var _message = new ChatMessage(message);
+			var _shouldPrintMeta = true;
+
+			if (lastMessage && (message.author == lastMessage.author) &&
+				(message.timestamp.getTime() < (lastMessage.timestamp.getTime() + omitMetaTimeout))) {
+				_shouldPrintMeta = false;
+			}
+
+			var _message = new ChatMessage(message, _shouldPrintMeta);
 			_message.setUserColor(getUserColor(message.author));
 			this.chatBox.append(_message.format());
+
+			lastMessage = message;
 		};
 
 		this.addInfo = function(text) {
@@ -255,8 +272,8 @@ jQuery(function($) {
 					_options.userList.addUser(message.author);
 				});
 			}).catch(function(rejection) {
-				_options.chatBox.addError('There was an error loading message history.');
 				console.log(rejection);
+				_options.chatBox.addError('There was an error loading message history.');
 			});
 
 			_options.chatBox.ready();

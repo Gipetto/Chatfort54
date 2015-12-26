@@ -143,6 +143,9 @@ body {
 			.time {
 				display: inline-block;
 				width: 5em;
+				text-align: right;
+				padding-right: 1em;
+				font-size: 0.9em;
 			}
 
 			.username {
@@ -159,7 +162,7 @@ body {
 					margin: 3px 0 0 5.5em;
 
 					.meta {
-						margin-left: -5.5em;
+						margin-left: -6.5em;
 					}
 				}
 

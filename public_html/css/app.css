@@ -103,7 +103,10 @@ body {
         line-height: 1.3em; }
       .messages-scroller #messages .message-container .time {
         display: inline-block;
-        width: 5em; }
+        width: 5em;
+        text-align: right;
+        padding-right: 1em;
+        font-size: 0.9em; }
       .messages-scroller #messages .message-container .username {
         margin-right: 8px;
         font-weight: bold; }
@@ -112,7 +115,7 @@ body {
       .messages-scroller #messages .message-container .message p {
         margin: 3px 0 0 5.5em; }
         .messages-scroller #messages .message-container .message p .meta {
-          margin-left: -5.5em; }
+          margin-left: -6.5em; }
       .messages-scroller #messages .message-container .message code {
         font-size: 1.1em;
         background-color: #eeeeee; }

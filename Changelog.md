@@ -2,6 +2,7 @@
 
 - Properly format javascript dates
 - Log promise rejections, error handling TBD
+- Don't output meta information if a user is responding to its own message within 10 minutes.
 
 
 # 0.1.0
