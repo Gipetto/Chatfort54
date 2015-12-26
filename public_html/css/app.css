@@ -115,9 +115,9 @@ body {
         font-weight: bold; }
         .messages-scroller #messages .message-container .username.me {
           text-decoration: underline; }
-      .messages-scroller #messages .message-container .message p {
+      .messages-scroller #messages .message-container .message > p {
         margin: 3px 0 0 5.5em; }
-        .messages-scroller #messages .message-container .message p .meta {
+        .messages-scroller #messages .message-container .message > p .meta {
           margin-left: -6.5em; }
       .messages-scroller #messages .message-container .message code {
         font-size: 1.1em;
@@ -132,6 +132,10 @@ body {
         margin-left: 6.5em; }
         .messages-scroller #messages .message-container .message pre code {
           background-color: transparent; }
+      .messages-scroller #messages .message-container .message blockquote {
+        border-left: 4px solid #aaaaaa;
+        padding-left: 1em;
+        margin-left: 5.5em; }
 
 #message-input {
   position: absolute;

@@ -163,7 +163,7 @@ body {
 			}
 
 			.message {
-				p {
+				> p {
 					margin: 3px 0 0 5.5em;
 
 					.meta {
@@ -188,6 +188,12 @@ body {
 					code {
 						background-color: transparent;
 					}
+				}
+
+				blockquote {
+					border-left: 4px solid #aaaaaa;
+					padding-left: 1em;
+					margin-left: 5.5em;
 				}
 			}
 		}

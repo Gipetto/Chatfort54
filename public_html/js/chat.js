@@ -1,11 +1,17 @@
 jQuery(function($) {
 	"use strict";
 
+	var chatMarkedRenderer = new marked.Renderer();
+	chatMarkedRenderer.heading = function(text, level) {
+		return '<p>' + (new Array(level +1).join('#')) + ' ' + text + '</p>';
+	};
+
 	marked.setOptions({
 		gfm: true,
 		tables: false,
 		sanitize: true,
-		smartypants: true
+		smartypants: true,
+		renderer: chatMarkedRenderer
 	});
 
 	var accessManager;
@@ -39,9 +45,10 @@ jQuery(function($) {
 			var $message = $('<div></div>').append($(message));
 
 			if (_printMeta) {
-				// we can't have <pre> elements being the first item
+				// we can't have <pre> or <blockquote> elements being the first item
 				// they format the entire thing funny, and that ain't funny
-				if ($message.find(':first').is('pre')) {
+				var $first = $message.find(':first');
+				if ($first.is('pre') || $first.is('blockquote')) {
 					$message.prepend($('<p>&nbsp;</p>'));
 				}
 			}
