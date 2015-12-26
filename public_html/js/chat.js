@@ -136,6 +136,14 @@ jQuery(function($) {
 			this.chatBox.append($msg);
 		};
 
+		this.addError = function(text) {
+			var $msg = $('<div></div>', {
+				'class': 'error',
+				'html': text
+			});
+			this.chatBox.append($msg);
+		};
+
 		var listenTo = function(selector) {
 			return $(selector).on('keydown', function(e) {
 				var _this = $(this);
@@ -247,6 +255,7 @@ jQuery(function($) {
 					_options.userList.addUser(message.author);
 				});
 			}).catch(function(rejection) {
+				_options.chatBox.addError('There was an error loading message history.');
 				console.log(rejection);
 			});
 
@@ -278,6 +287,7 @@ jQuery(function($) {
 					setupChannel(_channel);
 				}
 			}).catch(function(rejection) {
+				_options.chatBox.addError('There was an error setting up the channel. Please refresh your browser.');
 				console.log(rejection);
 			});
 		};
