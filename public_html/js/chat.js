@@ -277,6 +277,8 @@ jQuery(function($) {
 				} else {
 					setupChannel(_channel);
 				}
+			}).catch(function(rejection) {
+				console.log(rejection);
 			});
 		};
 
