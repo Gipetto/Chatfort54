@@ -71,7 +71,7 @@ body {
       overflow-y: scroll; }
       #menu #users #users-list ul {
         list-style-type: circle;
-        padding-left: 1em;
+        padding-left: 1.4em;
         margin-top: 0.5em; }
         #menu #users #users-list ul li {
           font-size: 0.9em;

@@ -8,6 +8,7 @@ jQuery(function($) {
 
 	marked.setOptions({
 		gfm: true,
+		breaks: true,
 		tables: false,
 		sanitize: true,
 		smartypants: true,
@@ -36,12 +37,12 @@ jQuery(function($) {
 				return content;
 			});
 
-			message = fixUpMessage(message);
+			message = postProcessMessage(message);
 
 			return message;
 		};
 
-		var fixUpMessage = function(message) {
+		var postProcessMessage = function(message) {
 			var $message = $('<div></div>').append($(message));
 
 			if (_printMeta) {
@@ -171,7 +172,7 @@ jQuery(function($) {
 		var listenTo = function(selector) {
 			return $(selector).on('keydown', function(e) {
 				var _this = $(this);
-				if (e.keyCode == 13) {
+				if (e.keyCode == 13 && !e.shiftKey) {
 					e.preventDefault();
 					e.stopPropagation();
 					chatApp.sendMessage(_this.val());
