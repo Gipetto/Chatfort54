@@ -82,8 +82,9 @@ jQuery(function($) {
 
 		var getTime = function(dateObj) {
 			var hour = dateObj.getHours();
+			var minutes = dateObj.getMinutes();
 			var meridian = hour >= 12 ? 'PM' : 'AM';
-			return ((hour + 11) % 12 + 1) + ':' + dateObj.getMinutes() + meridian;
+			return ((hour + 11) % 12 + 1) + ':' + (minutes < 10 ? '0' + minutes : minutes) + meridian;
 		};
 
 		// override the default user color
@@ -245,6 +246,8 @@ jQuery(function($) {
 					_options.chatBox.addMessage(message);
 					_options.userList.addUser(message.author);
 				});
+			}).catch(function(rejection) {
+				console.log(rejection);
 			});
 
 			_options.chatBox.ready();
