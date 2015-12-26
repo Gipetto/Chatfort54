@@ -235,6 +235,7 @@ jQuery(function($) {
 		this.init = function() {
 			$.getJSON('token', initCallback)
 				.fail(function(e) {
+					_options.chatBox.addError('Could not retrieve JOT token. Please refresh your browser.');
 					console.log(e);
 				});
 		};
