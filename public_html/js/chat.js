@@ -101,7 +101,7 @@ jQuery(function($) {
 			var hour = dateObj.getHours();
 			var minutes = dateObj.getMinutes();
 			var meridian = hour >= 12 ? 'PM' : 'AM';
-			return ((hour + 11) % 12 + 1) + ':' + (minutes < 10 ? '0' + minutes : minutes) + meridian;
+			return ((hour + 11) % 12 + 1) + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + meridian;
 		};
 
 		// override the default user color

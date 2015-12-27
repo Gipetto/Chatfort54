@@ -106,17 +106,17 @@ body {
         line-height: 1.3em; }
       .messages-scroller #messages .message-container .time {
         display: inline-block;
-        width: 5em;
+        width: 6em;
         text-align: right;
         padding-right: 1em;
-        font-size: 0.9em; }
+        font-size: 0.8em; }
       .messages-scroller #messages .message-container .username {
         margin-right: 8px;
         font-weight: bold; }
         .messages-scroller #messages .message-container .username.me {
           text-decoration: underline; }
       .messages-scroller #messages .message-container .message > p {
-        margin: 3px 0 0 5.5em; }
+        margin: 3px 0 0 6em; }
         .messages-scroller #messages .message-container .message > p .meta {
           margin-left: -6.5em; }
       .messages-scroller #messages .message-container .message code {
