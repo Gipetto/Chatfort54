@@ -15,9 +15,6 @@ jQuery(function($) {
 		renderer: chatMarkedRenderer
 	});
 
-	var accessManager;
-	var messagingClient;
-
 	function ChatMessage(message, printMeta) {
 		var _message = message;
 		var _userColor = '#000';
@@ -231,6 +228,8 @@ jQuery(function($) {
 		};
 
 		var _options = $.extend(_defaults, options);
+		var _accessManager;
+		var _messagingClient;
 		var _channel;
 
 		this.init = function() {
@@ -285,21 +284,36 @@ jQuery(function($) {
 			_options.chatBox.ready();
 		};
 
+		var refreshToken = function(data) {
+			console.log('new token');
+			console.dir(data);
+			_accessManager.updateToken(data.token);
+		};
+
 		var initCallback = function(data) {
 			_options.chatBox.addInfo('Initializing&hellip;');
 			_options.identity = data.identity;
 
 			// Initialize the IP messaging client
-			accessManager = new Twilio.AccessManager(data.token);
-			messagingClient = new Twilio.IPMessaging.Client(accessManager);
+			_accessManager = new Twilio.AccessManager(data.token);
+			_messagingClient = new Twilio.IPMessaging.Client(_accessManager);
 
-			var promise = messagingClient.getChannelByUniqueName(_options.channelName, {
+			_messagingClient.on('tokenExpired', function() {
+				$.getJSON('token', refreshToken)
+					.fail(function(e) {
+						_options.chatBox.addError('Could not update JOT token. Please refresh your browser.');
+						console.log(e);
+					});
+			});
+
+			var promise = _messagingClient.getChannelByUniqueName(_options.channelName, {
 				'logLevel': 'debug'
 			});
+
 			promise.then(function (channel) {
 				_channel = channel;
 				if (!_channel) {
-					messagingClient.createChannel({
+					_messagingClient.createChannel({
 						uniqueName: _options.channelName,
 						friendlyName: 'Channel: ' + _options.channelFriendlyName
 					}).then(function (channel) {

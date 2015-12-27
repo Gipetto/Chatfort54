@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class TokenController {
 
+	protected static $ttl = 3600;
+
 	public function get(Request $request, Application $app) {
 		/** @var MyBBUser $identity */
 		$identity = $app['security']->getToken()->getUser();
@@ -21,7 +23,7 @@ class TokenController {
 			$app['config']['twilio']['accountSid'],
 			$app['config']['twilio']['apiKey'],
 			$app['config']['twilio']['apiSecret'],
-			3600,
+			self::$ttl,
 			$identity->getUsername()
 		);
 
