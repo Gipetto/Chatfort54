@@ -136,6 +136,9 @@ body {
         border-left: 4px solid #aaaaaa;
         padding-left: 1em;
         margin-left: 5.5em; }
+      .messages-scroller #messages .message-container .message .emote {
+        font-style: italic;
+        color: #777777; }
 
 #message-input {
   position: absolute;

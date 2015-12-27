@@ -39,6 +39,15 @@ jQuery(function($) {
 			return message;
 		};
 
+		var emote = function(text) {
+			var _text = text.replace('/me', _message.author);
+
+			return $('<p></p>', {
+				'class': 'emote',
+				'html': $('<div></div>').text(_text).html() // entity-ize
+			});
+		};
+
 		var postProcessMessage = function(message) {
 			var $message = $('<div></div>').append($(message));
 
@@ -102,7 +111,14 @@ jQuery(function($) {
 
 		// public function to retrieve formatted message
 		this.format = function() {
-			var _text = processMessage(_message.body);
+			var _text;
+
+			if (_message.body.substring(0, 3) == '/me') {
+				_text = emote(message.body);
+				_printMeta = false;
+			} else {
+				_text = processMessage(_message.body);
+			}
 			return formatMessage(_text);
 		};
 	}
