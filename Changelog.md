@@ -1,3 +1,13 @@
+# 0.2.0
+
+- Refresh access token when it expires
+- Emote
+- Load version number from file instead of from yaml config
+- Fix date formatting
+- General cleanup
+- Mobile friendliness
+
+
 # 0.1.1
 
 - Properly format javascript dates
