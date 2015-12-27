@@ -15,9 +15,9 @@ class TokenController {
 	public function get(Request $request, Application $app) {
 		/** @var MyBBUser $identity */
 		$identity = $app['security']->getToken()->getUser();
+		$deviceId = $request->get('fingerprint');
 
 		$appName = $app['config']['app']['name'];
-		$deviceId = 'browser';
 
 		$token = new \Services_Twilio_AccessToken(
 			$app['config']['twilio']['accountSid'],

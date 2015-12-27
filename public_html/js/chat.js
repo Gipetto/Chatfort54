@@ -248,9 +248,12 @@ jQuery(function($) {
 		var _accessManager;
 		var _messagingClient;
 		var _channel;
+		var _browserFingerprint;
 
-		this.init = function() {
-			$.getJSON('token', initCallback)
+		var init = function() {
+			$.getJSON('token', {
+				'fingerprint': _browserFingerprint
+			}, initCallback)
 				.fail(function(e) {
 					_options.chatBox.addError('Could not retrieve JOT token. Please refresh your browser.');
 					console.log(e);
@@ -320,7 +323,9 @@ jQuery(function($) {
 			_messagingClient = new Twilio.IPMessaging.Client(_accessManager);
 
 			_messagingClient.on('tokenExpired', function() {
-				$.getJSON('token', refreshToken)
+				$.getJSON('token', {
+					'fingerprint': _browserFingerprint
+				}, refreshToken)
 					.fail(function(e) {
 						_options.chatBox.addError('Could not update JOT token. Please refresh your browser.');
 						console.log(e);
@@ -350,7 +355,10 @@ jQuery(function($) {
 			});
 		};
 
-		this.init();
+		new Fingerprint2().get(function(result, components) {
+			_browserFingerprint = result;
+			init();
+		});
 	}
 
 	var chatApp = new ChatApp({

@@ -1,3 +1,8 @@
+# 0.2.1
+
+- Use JS browser fingerprinting to generate a device id
+
+
 # 0.2.0
 
 - Refresh access token when it expires
