@@ -17,10 +17,13 @@ class MyBBListener implements ListenerInterface {
 	protected $tokenStorage;
 	protected $authenticationManager;
 
-	public function __construct(TokenStorageInterface $tokenStorage, AuthenticationManagerInterface $authManager, Logger $logger) {
+	private $allowRandom;
+
+	public function __construct(TokenStorageInterface $tokenStorage, AuthenticationManagerInterface $authManager, Logger $logger, $allowRandom = false) {
 		$this->tokenStorage = $tokenStorage;
 		$this->authenticationManager = $authManager;
 		$this->logger = $logger;
+		$this->allowRandom = $allowRandom;
 	}
 
 	public function handle(GetResponseEvent $event) {
@@ -28,6 +31,10 @@ class MyBBListener implements ListenerInterface {
 
 		try {
 			$cookieVal = $request->cookies->get('mybbuser');
+
+			if(!$cookieVal && $this->allowRandom) {
+				$cookieVal = uniqid('user');
+			}
 
 			$token = new MyBBUserToken();
 			$token->setUser($cookieVal);

@@ -10,7 +10,7 @@ $app['security.authentication_listener.factory.mybb'] = $app->protect(function($
 		return new MyBBProvider($app['security.user_provider.default']);
 	});
 	$app['security.authentication_listener.' . $name . '.mybb'] = $app->share(function() use ($app) {
-		return new MyBBListener($app['security.token_storage'], $app['security.authentication_manager'], $app['monolog']);
+		return new MyBBListener($app['security.token_storage'], $app['security.authentication_manager'], $app['monolog'], $app['config']['mybb']['allowRandom']);
 	});
 
 	return [
