@@ -53,7 +53,7 @@ body {
 }
 
 #menu {
-	flex: 0 0 225px;
+	flex: 0 0 200px;
 	-ms-flex-order: 1;
 	order: 1;
 	background: #385947;
@@ -145,29 +145,29 @@ body {
 				line-height: 1.3em;
 			}
 
-			.time {
-				display: inline-block;
-				width: 6em;
-				text-align: right;
-				padding-right: 1em;
-				font-size: 0.8em;
-			}
-
-			.username {
-				margin-right: 8px;
-				font-weight: bold;
-
-				&.me {
-					text-decoration: underline;
-				}
-			}
-
 			.message {
 				> p {
 					margin: 3px 0 0 6em;
+				}
 
-					.meta {
-						margin-left: -6.5em;
+				.meta {
+					margin-left: -6.5em;
+
+					.username {
+						margin-right: 8px;
+						font-weight: bold;
+
+						&.me {
+							text-decoration: underline;
+						}
+					}
+
+					.time {
+						display: inline-block;
+						width: 6em;
+						text-align: right;
+						padding-right: 1em;
+						font-size: 0.8em;
 					}
 				}
 
@@ -234,4 +234,47 @@ body {
 	border-radius: 4px;
 	background-color: rgba(0,0,0,.2);
 	box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+@media only screen and (max-device-width: 750px) {
+	#menu {
+		display: none;
+	}
+
+	#main {
+		width: 100%;
+		padding: 0 1em;
+
+		#messages {
+			.message-container {
+				.message {
+					> p {
+						margin: 3px 0 0 1em;
+					}
+
+					.meta {
+						display: inline-block;
+						width: 100%;
+						margin: 0 0 0 -1em;
+
+						.time {
+							float: right;
+							margin: 2px 0 0 0;
+							padding-right: 0.5em;
+							width: auto;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	#message-input {
+		padding: 1em;
+
+		/* prevent iOS safari from zooming in on the input */
+		textarea {
+			font-size: 16px;
+		}
+	}
 }
