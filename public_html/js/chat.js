@@ -240,7 +240,8 @@ jQuery(function($) {
 			'channelFriendlyName': 'General',
 			"identity": null,
 			'chatBox': null,
-			'userList': null
+			'userList': null,
+			'numHistoryMessages': 50
 		};
 
 		var _options = $.extend(_defaults, options);
@@ -262,6 +263,19 @@ jQuery(function($) {
 
 		this.getIdentity = function() {
 			return _options.identity;
+		};
+
+		var loadMessageHistory = function() {
+			var messagesPromise = _channel.getMessages(_options.numHistoryMessages);
+			messagesPromise.then(function(messages) {
+				$.each(messages, function(i, message) {
+					_options.chatBox.addMessage(message);
+					_options.userList.addUser(message.author);
+				});
+			}).catch(function(rejection) {
+				console.log(rejection);
+				_options.chatBox.addError('There was an error loading message history.');
+			});
 		};
 
 		// Set up channel after it has been found
@@ -286,16 +300,7 @@ jQuery(function($) {
 				_options.userList.removeUser(member.identity);
 			});
 
-			var messagesPromise = channel.getMessages('50');
-			messagesPromise.then(function(messages) {
-				$.each(messages, function(i, message) {
-					_options.chatBox.addMessage(message);
-					_options.userList.addUser(message.author);
-				});
-			}).catch(function(rejection) {
-				console.log(rejection);
-				_options.chatBox.addError('There was an error loading message history.');
-			});
+			loadMessageHistory();
 
 			_options.chatBox.ready();
 		};
