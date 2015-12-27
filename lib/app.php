@@ -9,6 +9,7 @@ use Symfony\Component\Debug\ExceptionHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+require_once DOCROOT . '/lib/version.php';
 
 ErrorHandler::register();
 ExceptionHandler::register();

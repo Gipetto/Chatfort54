@@ -6,7 +6,6 @@ twilio:
 app:
     name: APP_NAME
     debug: false
-    version: 0.1.1
 mybb:
     allowRandom: false
 services:
