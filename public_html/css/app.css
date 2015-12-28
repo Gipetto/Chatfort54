@@ -179,7 +179,9 @@ body {
     #main #messages .message-container .message .meta {
       display: inline-block;
       width: 100%;
-      margin: 0 0 0 -1em; }
+      margin: 0; }
+      #main #messages .message-container .message .meta .username {
+        margin: 0 0 0 -1em; }
       #main #messages .message-container .message .meta .time {
         float: right;
         margin: 2px 0 0 0;

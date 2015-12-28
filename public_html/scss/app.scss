@@ -255,7 +255,11 @@ body {
 					.meta {
 						display: inline-block;
 						width: 100%;
-						margin: 0 0 0 -1em;
+						margin: 0;
+
+						.username {
+							margin: 0 0 0 -1em;
+						}
 
 						.time {
 							float: right;
