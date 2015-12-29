@@ -33,7 +33,7 @@ jQuery(function($) {
 	$('.help').on('click', function(e) {
 		e.preventDefault();
 		$inputTextarea.blur();
-		$(window).trigger('help-show');
+		$(window).trigger('help-toggle');
 	});
 
 	$('.help-close').on('click', function(e) {
@@ -53,6 +53,13 @@ jQuery(function($) {
 		var init = function() {
 			$(window).on('help-show', show);
 			$(window).on('help-hide', hide);
+			$(window).on('help-toggle', function(e) {
+				if ($container.is(':visible')) {
+					hide();
+				} else {
+					show();
+				}
+			});
 			$(window).on('keydown', function(e) {
 				if (e.keyCode == 27 && $container.is(':visible')) {
 					hide();
