@@ -137,7 +137,7 @@ body {
 	-ms-flex-order: 1;
 	order: 1;
 	background: #385947;
-	color: #fff;
+	color: #eee;
 
 	.menu-heading {
 		padding-top: 1em;
@@ -160,6 +160,7 @@ body {
 			font-size: 1.1em;
 			margin-bottom: 0;
 			margin-left: 1em;
+			text-shadow: 1px 1px 0 black;
 		}
 
 		.help {
@@ -173,6 +174,7 @@ body {
 
 	#users {
 		margin: 0 1em;
+		text-shadow: 1px 1px 0 black;
 
 		#users-list {
 			overflow-y: scroll;

@@ -108,7 +108,7 @@ body {
   -ms-flex-order: 1;
   order: 1;
   background: #385947;
-  color: #fff; }
+  color: #eee; }
   #menu .menu-heading {
     padding-top: 1em;
     text-align: center; }
@@ -124,7 +124,8 @@ body {
       text-align: left;
       font-size: 1.1em;
       margin-bottom: 0;
-      margin-left: 1em; }
+      margin-left: 1em;
+      text-shadow: 1px 1px 0 black; }
     #menu .menu-heading .help {
       color: #fff;
       text-decoration: none;
@@ -132,7 +133,8 @@ body {
       top: 0.5em;
       right: 0.5em; }
   #menu #users {
-    margin: 0 1em; }
+    margin: 0 1em;
+    text-shadow: 1px 1px 0 black; }
     #menu #users #users-list {
       overflow-y: scroll; }
       #menu #users #users-list ul {
