@@ -67,7 +67,9 @@ jQuery(function($) {
 		var formatMessage = function(messageBody) {
 			var $msg = $('<span></span>', {
 				'class': 'message',
-				'html': messageBody
+				'html': messageBody,
+				'data-message-sid': message.sid,
+				'data-message-timestamp': message.timestamp.valueOf()
 			});
 
 			if (_printMeta) {
