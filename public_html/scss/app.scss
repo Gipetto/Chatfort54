@@ -4,6 +4,18 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+	text-rendering: optimizeLegibility;
+	-webkit-font-variant-ligatures: common-ligatures;
+	font-variant-ligatures: common-ligatures;
+	-webkit-font-feature-settings: "kern";
+	font-feature-settings: "kern";
+	font-kerning: normal;
+
+	input:focus,
+	textarea:focus,
+	button:focus {
+		outline: none
+	}
 }
 
 #layout {
@@ -20,13 +32,16 @@ body {
 }
 
 #main {
-	width: 80%;
+	width: 100%;
 	-ms-flex-order: 2;
 	order: 2;
-	padding: 0 2em;
 	justify-content: flex-start; /* align items in Main Axis */
 	align-items: stretch; /* align items in Cross Axis */
 	align-content: stretch; /* Extra space in Cross Axis */
+
+	.main-wrapper {
+		padding: 0 1em;
+	}
 
 	.header {
 		color: #777;
@@ -48,6 +63,55 @@ body {
 
 		h2 {
 			font-size: 1.2em;
+		}
+	}
+}
+
+#help {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 200px;
+	overflow-y: scroll;
+	background-color: #fff;
+
+	.help-wrapper {
+		padding: 2em;
+		position: relative;
+
+		font-size: 0.9em;
+
+		.help-header {
+			border-bottom: 1px solid #eee;
+			text-align: right;
+
+			.help-close {
+				color: #777777;
+				font-size: 1.2em;
+			}
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+
+			tr {
+				th, td {
+					width: 50%;
+					font-weight: normal;
+					text-align: left;
+					vertical-align: top;
+
+					pre {
+						font-size: 1.1em;
+						margin: 0 0 1em 0;
+					}
+				}
+
+				td {
+					border-left: 2em solid transparent;
+				}
+			}
 		}
 	}
 }
@@ -80,6 +144,14 @@ body {
 			font-size: 1.1em;
 			margin-bottom: 0;
 			margin-left: 1em;
+		}
+
+		.help {
+			color: #fff;
+			text-decoration: none;
+			position: absolute;
+			top: 0.5em;
+			right: 0.5em;
 		}
 	}
 
@@ -121,9 +193,15 @@ body {
 	height: 100%;
 	width: auto;
 	overflow-y: scroll;
+	left: 0.5em;
+	right: 0.5em;
 
 	#messages {
 		padding-top: 1em;
+
+		.info, .error {
+			margin: 0.5em 1em;
+		}
 
 		.info {
 			color: gainsboro;
@@ -210,7 +288,7 @@ body {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	padding: 1em 2em;
+	padding: 1em;
 	margin-top: 1em;
 	border-top: 1px solid #eee;
 
@@ -226,14 +304,16 @@ body {
 	}
 }
 
-::-webkit-scrollbar {
-	-webkit-appearance: none;
-	width: 7px;
-}
-::-webkit-scrollbar-thumb {
-	border-radius: 4px;
-	background-color: rgba(0,0,0,.2);
-	box-shadow: 0 0 1px rgba(255,255,255,.5);
+@media only screen and (min-device-width: 750px) {
+	::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 7px;
+	}
+	::-webkit-scrollbar-thumb {
+		border-radius: 4px;
+		background-color: rgba(0,0,0,.2);
+		box-shadow: 0 0 1px rgba(255,255,255,.5);
+	}
 }
 
 @media only screen and (max-device-width: 750px) {
@@ -243,13 +323,18 @@ body {
 
 	#main {
 		width: 100%;
-		padding: 0 1em;
+
+		.header {
+			h2 {
+				display: none;
+			}
+		}
 
 		#messages {
 			.message-container {
 				.message {
 					> p {
-						margin: 3px 0 0 1em;
+						margin: 3px 0 0 1.5em;
 					}
 
 					.meta {
@@ -258,13 +343,13 @@ body {
 						margin: 0;
 
 						.username {
-							margin: 0 0 0 -1em;
+							margin: 0 0 0 -0.5em;
 						}
 
 						.time {
 							float: right;
 							margin: 2px 0 0 0;
-							padding-right: 0.5em;
+							padding-right: 1em;
 							width: auto;
 						}
 					}
@@ -274,7 +359,7 @@ body {
 	}
 
 	#message-input {
-		padding: 1em;
+		padding: 0.5em 1em;
 
 		/* prevent iOS safari from zooming in on the input */
 		textarea {

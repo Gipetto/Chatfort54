@@ -190,6 +190,7 @@ jQuery(function($) {
 				if (e.keyCode == 13 && !e.shiftKey) {
 					e.preventDefault();
 					e.stopPropagation();
+
 					chatApp.sendMessage(_this.val());
 					_this.val('');
 				}
@@ -246,6 +247,10 @@ jQuery(function($) {
 			'numHistoryMessages': 50
 		};
 
+		var _commands = {
+			'help': 'help-show'
+		};
+
 		var _options = $.extend(_defaults, options);
 		var _accessManager;
 		var _messagingClient;
@@ -262,7 +267,32 @@ jQuery(function($) {
 				});
 		};
 
+		var doCommand = function(message) {
+			var cmdRegex = /^\/([a-zA-Z]*)\b(.*)/;
+			var matches = cmdRegex.exec(message);
+
+			if (!matches || !matches[1] || !(matches[1] in _commands)) {
+				return false;
+			}
+
+			var event = _commands[matches[1]];
+
+			var params = [];
+			if (matches[2]) {
+				params.push(matches[2].trim())
+			}
+
+			$(window).trigger(event, params);
+			return true;
+		};
+
 		this.sendMessage = function(message) {
+			var command = doCommand(message);
+
+			if (command) {
+				return;
+			}
+
 			_channel.sendMessage(message);
 		};
 

@@ -1,24 +1,31 @@
+# 0.2.2
+
+- Add command processing to message handling.
+- Add help overlay via command processing.
+- Sane-itize the css and markup.
+
+
 # 0.2.1
 
-- Use JS browser fingerprinting to generate a device id
+- Use JS browser fingerprinting to generate a device id.
 
 
 # 0.2.0
 
-- Refresh access token when it expires
-- Emote
-- Load version number from file instead of from yaml config
-- Fix date formatting
-- General cleanup
-- Mobile friendliness
+- Refresh access token when it expires.
+- Emote.
+- Load version number from file instead of from yaml config.
+- Fix date formatting.
+- General cleanup.
+- Mobile friendliness.
 
 
 # 0.1.1
 
-- Properly format javascript dates
-- Log promise rejections, error handling TBD
+- Properly format javascript dates.
+- Log promise rejections, error handling TBD.
 - Don't output meta information if a user is responding to its own message within 10 minutes.
-- Don't cache any output, set cache control to private
+- Don't cache any output, set cache control to private.
 
 
 # 0.1.0
