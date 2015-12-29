@@ -1,3 +1,9 @@
+# 0.2.3
+
+- Better help formatting.
+- More help documentation.
+
+
 # 0.2.2
 
 - Add command processing to message handling.

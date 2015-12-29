@@ -5,7 +5,18 @@
 		</div>
 		<div class="help-inner">
 
+			<h3>Text Input</h3>
+
+			<div class="help-sample">
+				<pre><code>shift+return</code></pre>
+				<p>By default the return key will submit your message. But if you need to insert a carriage return simply
+					use <code>shift+return</code> (hold down the shift key while using the return key) to create a line break.</p>
+			</div>
+
 			<h3>Text Formatting</h3>
+
+			<p>Chat supports a subset of the Markdown & Github Flavored Markdown features. You may find that more
+			features are supported than are listed here.</p>
 
 			<div class="help-sample">
 				<pre><code>*this text is italic*
@@ -21,6 +32,27 @@ __so is this text__</code></pre>
 					<strong>so is this text</strong></p>
 			</div>
 
+			<div class="help-sample">
+				<pre><code>> Quoted text</code></pre>
+				<p>Will produced text formatted to indicate that it was quoted from another source, like so:</p>
+				<blockquote>Quoted text</blockquote>
+			</div>
+
+			<div class="help-sample">
+				<pre><code>- list item
+- list item</code></pre>
+				<p>Will produce an unordered list, like so:</p>
+				<ul>
+					<li>list item</li>
+					<li>list item</li>
+				</ul>
+			</div>
+
+			<div class="help-sample">
+				<pre><code>Inline code `is just a backtick` away</code></pre>
+				<p>Inline code <code>is just a backtick</code> away</p>
+			</div>
+
 			<h3>Commands</h3>
 
 			<div class="help-sample">
@@ -31,8 +63,8 @@ __so is this text__</code></pre>
 
 			<div class="help-sample">
 				<pre><code>/me likes candy</code></pre>
-				<p>Displays this help dialog.<br>
-					Use the <code>X</code> in the upper right or the <code>esc</code> key to dismiss.</p>
+				<p>Displays action text, ie:<br>
+					<em>{yourUsername} likes candy</em></p>
 			</div>
 		</div>
 	</div>

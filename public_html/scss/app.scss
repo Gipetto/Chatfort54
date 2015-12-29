@@ -1,3 +1,12 @@
+$blockquote-border-left: 4px solid #aaa;
+$blockquote-padding-left: 1em;
+
+@mixin lists() {
+	margin-left: 0;
+	padding-left: 0;
+	list-style-position: outside;
+}
+
 html,
 body {
 	height: 100%;
@@ -15,6 +24,18 @@ body {
 	textarea:focus,
 	button:focus {
 		outline: none
+	}
+
+	code {
+		font-size: 1.1em;
+	}
+
+	blockquote {
+		margin-left: 6em;
+	}
+
+	blockquote > blockquote {
+		margin-left: 0;
 	}
 }
 
@@ -92,7 +113,7 @@ body {
 		}
 
 		.help-sample {
-			$column-gap: 2em;
+			$help-column-gap: 2em;
 			$help-border-radius: 4px;
 
 			padding: 1em;
@@ -100,9 +121,9 @@ body {
 			-webkit-column-count: 2;
 			-moz-column-count: 2;
 			column-count: 2;
-			-webkit-column-gap: $column-gap;
-			-moz-column-gap: $column-gap;
-			column-gap: $column-gap;
+			-webkit-column-gap: $help-column-gap;
+			-moz-column-gap: $help-column-gap;
+			column-gap: $help-column-gap;
 			-webkit-column-rule: 1px outset #fff;
 			-moz-column-rule: 1px outset #fff;
 			column-rule: 1px outset #fff;
@@ -127,6 +148,17 @@ body {
 				-webkit-column-break-inside: avoid;
 				page-break-inside: avoid;
 				break-inside: avoid;
+			}
+
+			blockquote {
+				border-left: $blockquote-border-left;
+				padding-left: $blockquote-padding-left;
+				margin-left: 0;
+			}
+
+			ul, ol {
+				@include lists();
+				margin-left: 1.4em;
 			}
 		}
 	}
@@ -268,7 +300,6 @@ body {
 				}
 
 				code {
-					font-size: 1.1em;
 					background-color: #eeeeee;
 				}
 
@@ -287,14 +318,18 @@ body {
 				}
 
 				blockquote {
-					border-left: 4px solid #aaaaaa;
-					padding-left: 1em;
-					margin-left: 5.5em;
+					border-left: $blockquote-border-left;
+					padding-left: $blockquote-padding-left;
 				}
 
 				.emote {
 					font-style: italic;
 					color: #777777;
+				}
+
+				ul, ol {
+					@include lists();
+					margin-left: 7em;
 				}
 			}
 		}
@@ -370,6 +405,16 @@ body {
 							padding-right: 1em;
 							width: auto;
 						}
+					}
+
+					blockquote, pre {
+						margin-left: 1.5em;
+						margin-right: 1em;
+					}
+
+					ul, ol {
+						@include lists();
+						margin-left: 2.7em;
 					}
 				}
 			}

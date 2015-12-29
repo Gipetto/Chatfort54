@@ -17,6 +17,15 @@ body {
   body textarea:focus,
   body button:focus {
     outline: none; }
+  html code,
+  body code {
+    font-size: 1.1em; }
+  html blockquote,
+  body blockquote {
+    margin-left: 6em; }
+  html blockquote > blockquote,
+  body blockquote > blockquote {
+    margin-left: 0; }
 
 #layout {
   display: flex;
@@ -102,6 +111,15 @@ body {
         -webkit-column-break-inside: avoid;
         page-break-inside: avoid;
         break-inside: avoid; }
+      #help .help-wrapper .help-sample blockquote {
+        border-left: 4px solid #aaa;
+        padding-left: 1em;
+        margin-left: 0; }
+      #help .help-wrapper .help-sample ul, #help .help-wrapper .help-sample ol {
+        margin-left: 0;
+        padding-left: 0;
+        list-style-position: outside;
+        margin-left: 1.4em; }
 
 #menu {
   flex: 0 0 200px;
@@ -192,7 +210,6 @@ body {
           padding-right: 1em;
           font-size: 0.8em; }
       .messages-scroller #messages .message-container .message code {
-        font-size: 1.1em;
         background-color: #eeeeee; }
       .messages-scroller #messages .message-container .message pre {
         background-color: #eeeeee;
@@ -205,12 +222,16 @@ body {
         .messages-scroller #messages .message-container .message pre code {
           background-color: transparent; }
       .messages-scroller #messages .message-container .message blockquote {
-        border-left: 4px solid #aaaaaa;
-        padding-left: 1em;
-        margin-left: 5.5em; }
+        border-left: 4px solid #aaa;
+        padding-left: 1em; }
       .messages-scroller #messages .message-container .message .emote {
         font-style: italic;
         color: #777777; }
+      .messages-scroller #messages .message-container .message ul, .messages-scroller #messages .message-container .message ol {
+        margin-left: 0;
+        padding-left: 0;
+        list-style-position: outside;
+        margin-left: 7em; }
 
 #message-input {
   position: absolute;
@@ -260,6 +281,14 @@ body {
         margin: 2px 0 0 0;
         padding-right: 1em;
         width: auto; }
+    #main #messages .message-container .message blockquote, #main #messages .message-container .message pre {
+      margin-left: 1.5em;
+      margin-right: 1em; }
+    #main #messages .message-container .message ul, #main #messages .message-container .message ol {
+      margin-left: 0;
+      padding-left: 0;
+      list-style-position: outside;
+      margin-left: 2.7em; }
 
   #message-input {
     padding: 0.5em 1em;
