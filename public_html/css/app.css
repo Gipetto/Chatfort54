@@ -249,7 +249,8 @@ body {
     box-shadow: inset 0 1px 3px #ddd;
     border-radius: 4px;
     vertical-align: middle;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    height: 4em; }
   #message-input .status {
     font-size: 0.75em;
     color: #aaa;
@@ -298,6 +299,9 @@ body {
     padding: 0.5em 1em;
     /* prevent iOS safari from zooming in on the input */ }
     #message-input textarea {
-      font-size: 16px; } }
+      font-size: 16px;
+      height: 2em; }
+    #message-input .status {
+      margin-bottom: 0; } }
 
 /*# sourceMappingURL=app.css.map */

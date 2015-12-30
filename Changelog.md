@@ -2,6 +2,7 @@
 
 - Cache bust the RequireJS urls until we have a proper versioning setup.
 - Add typing status indicator.
+- Control the height of the text input based on screen size.
 
 
 # 0.2.4
