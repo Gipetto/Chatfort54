@@ -115,9 +115,8 @@ jQuery(function($) {
 		this.format = function() {
 			var _text;
 
-			if (_message.body.substring(0, 3) == '/me') {
+			if (_message.isEmote) {
 				_text = emote(message.body);
-				_printMeta = false;
 			} else {
 				_text = processMessage(_message.body);
 			}
@@ -158,6 +157,15 @@ jQuery(function($) {
 
 			if (lastMessage && (message.author == lastMessage.author) &&
 				(message.timestamp.getTime() < (lastMessage.timestamp.getTime() + omitMetaTimeout))) {
+				_shouldPrintMeta = false;
+			}
+
+			if (lastMessage && lastMessage.isEmote) {
+				_shouldPrintMeta = true;
+			}
+
+			if (message.body.substring(0, 3) == '/me') {
+				message.isEmote = true;
 				_shouldPrintMeta = false;
 			}
 
