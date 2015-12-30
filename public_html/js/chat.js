@@ -1,5 +1,6 @@
 requirejs.config({
 	baseUrl: 'js',
+	urlArgs: "v=" +  (new Date()).getTime(),
 	paths: {
 		'jquery': '//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min',
 		'fingerprint2': '//cdn.jsdelivr.net/fingerprintjs2/1.0.3/fingerprint2.min',

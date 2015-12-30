@@ -1,3 +1,8 @@
+# 0.2.5
+
+- Cache bust the RequireJS urls until we have a proper versioning setup.
+
+
 # 0.2.4
 
 - Fix issue where message meta wouldn't show up after an emote.
