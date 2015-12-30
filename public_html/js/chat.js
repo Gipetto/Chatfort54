@@ -255,9 +255,7 @@ jQuery(function($) {
 			'numHistoryMessages': 50
 		};
 
-		var _commands = {
-			'help': 'help-show'
-		};
+		var _commands = {};
 
 		var _options = $.extend(_defaults, options);
 		var _accessManager;
@@ -273,6 +271,10 @@ jQuery(function($) {
 					_options.chatBox.addError('Could not retrieve JOT token. Please refresh your browser.');
 					console.log(e);
 				});
+		};
+
+		this.registerCommand = function(command, eventTrigger) {
+			_commands[command] = eventTrigger;
 		};
 
 		var doCommand = function(message) {
@@ -401,7 +403,7 @@ jQuery(function($) {
 		});
 	}
 
-	var chatApp = new ChatApp({
+	window.chatApp = new ChatApp({
 		'chatBox': new ChatBox({
 			'selector': '#messages',
 			'input': '#chat-input'
@@ -410,4 +412,5 @@ jQuery(function($) {
 			'selector': '#users ul'
 		})
 	});
+
 });

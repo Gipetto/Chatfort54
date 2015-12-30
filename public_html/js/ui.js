@@ -51,6 +51,8 @@ jQuery(function($) {
 		var $container = $(_options.selector);
 
 		var init = function() {
+			window.chatApp.registerCommand('help', 'help-show');
+
 			$(window).on('help-show', show);
 			$(window).on('help-hide', hide);
 			$(window).on('help-toggle', function(e) {

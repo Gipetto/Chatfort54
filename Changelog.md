@@ -1,6 +1,7 @@
 # 0.2.4
 
 - Fix issue where message meta wouldn't show up after an emote.
+- Allow chatApp command registration.
 
 
 # 0.2.3
