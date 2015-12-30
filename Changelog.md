@@ -2,6 +2,7 @@
 
 - Fix issue where message meta wouldn't show up after an emote.
 - Allow chatApp command registration.
+- Implement RequireJS for code separation.
 
 
 # 0.2.3
