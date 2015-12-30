@@ -68,6 +68,10 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 			_channel.sendMessage(message);
 		};
 
+		this.setTyping = function() {
+			_channel.typing();
+		};
+
 		this.getIdentity = function () {
 			return _options.identity;
 		};
@@ -105,6 +109,14 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 			channel.on('memberLeft', function (member) {
 				_options.chatBox.addInfo('User "' + member.identity + '" has left.');
 				_options.userList.removeUser(member.identity);
+			});
+
+			channel.on('typingStarted', function(member) {
+				_options.chatBox.setUserTyping(member);
+			});
+
+			channel.on('typingEnded', function(member) {
+				_options.chatBox.setUserDoneTyping(member);
 			});
 
 			loadMessageHistory();

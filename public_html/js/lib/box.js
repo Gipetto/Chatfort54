@@ -5,6 +5,7 @@ define(['jquery', 'lib/message'], function($, ChatMessage) {
 		this.chatBox = $(options.selector);
 		var colors = [];
 		var users = {};
+		var usersTyping = [];
 		var lastMessage = null;
 		var omitMetaTimeout = 60 * 10 * 1000;
 
@@ -71,21 +72,80 @@ define(['jquery', 'lib/message'], function($, ChatMessage) {
 
 		var listenTo = function (selector) {
 			return $(selector).on('keydown', function (e) {
+				if (!(e.shiftKey || e.metaKey || e.ctrlKey || e.altKey) &&
+					!(e.keyCode in [13])) {
+					chatApp.setTyping();
+				}
+
 				var _this = $(this);
 				if (e.keyCode == 13 && !e.shiftKey) {
 					e.preventDefault();
 					e.stopPropagation();
-
 					chatApp.sendMessage(_this.val());
 					_this.val('');
 				}
 			});
 		};
 
+		this.setUserTyping = function(member) {
+			var index = $.inArray(member.identity, usersTyping);
+
+			if (index < 0) {
+				usersTyping.push(member.identity);
+			}
+
+			updateUsersTyping();
+		};
+
+		this.setUserDoneTyping = function(member) {
+			var index = $.inArray(member.identity, usersTyping);
+
+			if (index > -1) {
+				usersTyping.splice(index, 1);
+			}
+
+			updateUsersTyping();
+		};
+
+		var updateUsersTyping = function() {
+			if (usersTyping.length == 0) {
+				statusBox.html('&nbsp;');
+				return;
+			}
+
+			var modifier = usersTyping.length > 1 ? 'are' : 'is';
+			var text = usersTyping.join(', ') + ' ' + modifier + ' typing&hellip;';
+			var spinner = '<i class="fa fa-spinner fa-spin"></i>';
+
+			statusBox.html(spinner + '&nbsp;' + text);
+		};
+
+		var setStatusBox = function(htmlContent, duration) {
+			if (htmlContent == undefined) {
+				return;
+			}
+
+			statusBox.html(htmlContent).css({'visibility': 1});
+
+			if (duration != undefined) {
+				setTimeout(function() {
+					clearStatusBox();
+				}, duration);
+			}
+		};
+
+		var clearStatusBox = function() {
+			statusBox.fadeOut('normal', function() {
+				$(this).html('&nbsp;').show();
+			});
+		};
+
 		this.ready = function () {
 			chatInput.prop('disabled', false);
+			setStatusBox('<i class="fa fa-thumbs-up"></i> Ready', 5000);
 		};
 
 		var chatInput = listenTo(options.input);
+		var statusBox = chatInput.siblings('.status');
 	}
 });

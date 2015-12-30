@@ -1,6 +1,7 @@
 # 0.2.5
 
 - Cache bust the RequireJS urls until we have a proper versioning setup.
+- Add typing status indicator.
 
 
 # 0.2.4

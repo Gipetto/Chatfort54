@@ -31,6 +31,8 @@ define(['jquery'], function($) {
 
 	$inputTextarea.focus();
 
+
+
 	return {
 		main: $main,
 		messages: $messages,
