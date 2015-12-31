@@ -73,7 +73,10 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 				return;
 			}
 
-			_channel.sendMessage(message);
+			var messagePromise = _channel.sendMessage(message);
+			messagePromise.catch(function(rejection) {
+				_options.chatBox.addError('Could not send message: ' + rejection);
+			});
 		};
 
 		this.setTyping = function() {
@@ -93,7 +96,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 				});
 			}).catch(function (rejection) {
 				console.log(rejection);
-				_options.chatBox.addError('There was an error loading message history.');
+				_options.chatBox.addError('There was an error loading message history: ' + rejection);
 			});
 		};
 
@@ -152,7 +155,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 						'fingerprint': _browserFingerprint
 					}, refreshToken)
 					.fail(function (e) {
-						_options.chatBox.addError('Could not update JOT token. Please refresh your browser.');
+						_options.chatBox.addError('Could not update JOT token. Please refresh your browser. Error: ' + e);
 						console.log(e);
 					});
 			});
@@ -173,7 +176,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 					setupChannel(_channel);
 				}
 			}).catch(function (rejection) {
-				_options.chatBox.addError('There was an error setting up the channel. Please refresh your browser.');
+				_options.chatBox.addError('There was an error setting up the channel. Please refresh your browser. Error: ' + rejection);
 				console.log(rejection);
 			});
 

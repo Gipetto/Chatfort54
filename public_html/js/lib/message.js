@@ -68,6 +68,7 @@ define(['jquery', 'marked'], function($, marked) {
 			var $msg = $('<span></span>', {
 				'class': 'message',
 				'html': messageBody,
+				'data-message-id': message.index,
 				'data-message-sid': message.sid,
 				'data-message-timestamp': message.timestamp.valueOf()
 			});
