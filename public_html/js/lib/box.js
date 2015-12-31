@@ -57,7 +57,7 @@ define(['jquery', 'lib/message'], function($, ChatMessage) {
 		this.addInfo = function (text) {
 			var $msg = $('<div></div>', {
 				'class': 'info',
-				'html': text
+				'html': '<i class="fa fa-info-circle"></i> ' + text
 			});
 			this.chatBox.append($msg);
 		};
@@ -65,7 +65,7 @@ define(['jquery', 'lib/message'], function($, ChatMessage) {
 		this.addError = function (text) {
 			var $msg = $('<div></div>', {
 				'class': 'error',
-				'html': text
+				'html': '<i class="fa fa-exclamation-triangle"></i> ' + text
 			});
 			this.chatBox.append($msg);
 		};

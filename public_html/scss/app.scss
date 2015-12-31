@@ -7,6 +7,14 @@ $blockquote-padding-left: 1em;
 	list-style-position: outside;
 }
 
+@mixin alerts() {
+	padding: 12px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 4px;
+	font-size: 0.9em;
+}
+
 html,
 body {
 	height: 100%;
@@ -256,13 +264,14 @@ body {
 		.info {
 			color: gainsboro;
 			font-family: monospace;
-			font-size: 0.9em;
-			line-height: 1.2em;
+			font-size: 1em;
 		}
 
 		.error {
-			font-weight: bold;
-			color: firebrick;
+			@include alerts();
+			color: #a94442;
+			background-color: #f2dede;
+			border-color: #ebccd1;
 		}
 
 		.message-container {

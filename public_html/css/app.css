@@ -184,11 +184,16 @@ body {
     .messages-scroller #messages .info {
       color: gainsboro;
       font-family: monospace;
-      font-size: 0.9em;
-      line-height: 1.2em; }
+      font-size: 1em; }
     .messages-scroller #messages .error {
-      font-weight: bold;
-      color: firebrick; }
+      padding: 12px;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: #a94442;
+      background-color: #f2dede;
+      border-color: #ebccd1; }
     .messages-scroller #messages .message-container {
       font-size: 0.9em;
       line-height: 2em; }
