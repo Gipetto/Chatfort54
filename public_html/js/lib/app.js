@@ -33,6 +33,14 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 			_commands[command] = eventTrigger;
 		};
 
+		this.addInfoMessage = function(message) {
+			_options.chatBox.addInfo(message);
+		};
+
+		this.addErrorMessage = function(message) {
+			_options.chatBox.addError(message);
+		};
+
 		var doCommand = function (message) {
 			var cmdRegex = /^\/([a-zA-Z]*)\b(.*)/;
 			var matches = cmdRegex.exec(message);

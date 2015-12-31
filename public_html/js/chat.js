@@ -43,3 +43,10 @@ require(['commands/help', 'lib/ui'], function(HelpBox, ui) {
 		new HelpBox();
 	});
 });
+
+require(['commands/test'], function(Tester) {
+	'use strict';
+	$(window).on('chat-init', function() {
+		new Tester();
+	});
+});
