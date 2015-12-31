@@ -1,3 +1,9 @@
+# 0.2.6
+
+- Add `Tester` command to assist in, well, testing and debug.
+- Be more verbose in showing error data to the user.
+
+
 # 0.2.5
 
 - Cache bust the RequireJS urls until we have a proper versioning setup.
