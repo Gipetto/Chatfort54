@@ -12,13 +12,10 @@ define(['jquery', 'lib/ui'], function($, ui) {
 		};
 
 		var testError = function(e, message) {
-			e.stopPropagation();
-			console.log(e);
 			window.chatApp.addErrorMessage(message);
 		};
 
 		var testInfo = function(e, message) {
-			console.log(e);
 			window.chatApp.addInfoMessage(message);
 		};
 
