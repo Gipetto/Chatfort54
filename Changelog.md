@@ -2,6 +2,8 @@
 
 - Add `Tester` command to assist in, well, testing and debug.
 - Be more verbose in showing error data to the user.
+- Improved `info` and `error` message styling.
+- Add config option to control the loading of minified IPMessaging JS.
 
 
 # 0.2.5

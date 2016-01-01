@@ -3,6 +3,7 @@ twilio:
     IPMServiceSid: TWILIO_IPM_SERVICE_SID
     apiKey: TWILIO_API_KEY
     apiSecret: TWILIO_API_SECRET
+    loadMinifiedJavascript: true
 app:
     name: APP_NAME
     debug: false
