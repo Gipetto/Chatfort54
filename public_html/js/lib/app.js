@@ -94,6 +94,8 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 					_options.chatBox.addMessage(message);
 					_options.userList.addUser(message.author);
 				});
+				var lastMessage = messages.pop();
+				_channel.updateLastConsumedMessageIndex(lastMessage.index);
 			}).catch(function (rejection) {
 				console.log(rejection);
 				_options.chatBox.addError('There was an error loading message history: ' + rejection);
@@ -109,6 +111,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 
 			// Listen for new messages sent to the channel
 			channel.on('messageAdded', function (message) {
+				channel.updateLastConsumedMessageIndex(message.index);
 				_options.chatBox.addMessage(message);
 			});
 

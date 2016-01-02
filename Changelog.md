@@ -1,3 +1,8 @@
+# 0.2.7
+
+- Update `updateLastConsumedMessageIndex` on the channel when a user has viewed a message.
+
+
 # 0.2.6
 
 - Add `Tester` command to assist in, well, testing and debug.
