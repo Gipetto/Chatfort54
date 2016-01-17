@@ -1,6 +1,7 @@
 # Next
 
 - Fix `/tldr` not found message.
+- Move info messages in to Status Box.
 
 
 # 0.2.8

@@ -120,7 +120,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 		var setupChannel = function (channel) {
 			// Join the general channel
 			channel.join().then(function (_channel) {
-				_options.chatBox.addInfo('Joined channel as ' + '<span class="me">' + _options.identity + '</span>.');
+				_options.chatBox.setStatus('Joined channel as ' + _options.identity, 'info');
 			});
 
 			// Listen for new messages sent to the channel
@@ -163,7 +163,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 		};
 
 		var initCallback = function (data) {
-			_options.chatBox.addInfo('Initializing&hellip;');
+			_options.chatBox.setStatus('Initializing&hellip;', 'info');
 			_options.identity = data.identity;
 
 			// Set our own Twilsock client that we can listen to
@@ -220,6 +220,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 				} else {
 					setupChannel(_channel);
 				}
+				console.log(_messagingClient);
 			}).catch(function (rejection) {
 				_options.chatBox.addError('There was an error setting up the channel. Please refresh your browser. Error: ' + rejection);
 				console.log(rejection);

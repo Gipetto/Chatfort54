@@ -146,6 +146,10 @@ define(['jquery', 'lib/message'], function($, ChatMessage) {
 			});
 		};
 
+		this.setStatus = function(statusMessage, icon) {
+			setStatusBox('<i class="fa fa-' + icon + '"></i> ' + statusMessage, 3000);
+		};
+
 		this.ready = function () {
 			chatInput.prop('disabled', false);
 			setStatusBox('<i class="fa fa-thumbs-up"></i> Ready', 5000);
