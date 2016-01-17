@@ -1,3 +1,8 @@
+# 0.2.8
+
+- Fix Base64 decoding for Safari.
+
+
 # 0.2.7
 
 - Update `updateLastConsumedMessageIndex` on the channel when a user has viewed a message.

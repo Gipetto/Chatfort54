@@ -20,12 +20,22 @@ define(['jquery', 'lib/ui', 'marked'], function($, ui, marked) {
 			});
 		};
 
+		/**
+		 * Base64 decode the man content, but also remove any whitespace so that safari works :sigh:
+		 *
+		 * @param input
+		 * @returns {string}
+		 */
+		var decodeInput = function(input) {
+			return window.atob(input.replace(/\s/g, ''));
+		};
+
 		var process = function(e, message) {
 			var _message = message;
 
 			if (index.hasOwnProperty(message)) {
 				$.getJSON(index[message], function(man) {
-					var _text = window.atob(man.content);
+					var _text = decodeInput(man.content);
 
 					window.chatApp.addRawMessage({
 						'author': 'tldr',
