@@ -1,4 +1,4 @@
-# Next
+# 0.2.7
 
 - Update `updateLastConsumedMessageIndex` on the channel when a user has viewed a message.
 - Improved error handling (If I'm lucky).
