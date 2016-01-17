@@ -3,6 +3,7 @@
 - Update `updateLastConsumedMessageIndex` on the channel when a user has viewed a message.
 - Improved error handling (If I'm lucky).
 - Added `/tldr command-name` command
+- Restyled sidebar.
 
 
 # 0.2.6

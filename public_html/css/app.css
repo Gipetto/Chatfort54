@@ -125,25 +125,19 @@ body {
   flex: 0 0 200px;
   -ms-flex-order: 1;
   order: 1;
-  background: #385947;
+  background: #313533;
   color: #eee; }
   #menu .menu-heading {
+    background: #385947;
     padding-top: 1em;
     text-align: center; }
     #menu .menu-heading .logo {
-      margin-bottom: -5px; }
+      margin-bottom: -4px; }
     #menu .menu-heading .upper {
-      border-top: 1px solid #444;
       background-color: #222;
       padding: 7px;
       color: #aaa;
       font-size: 0.8em; }
-    #menu .menu-heading h2 {
-      text-align: left;
-      font-size: 1.1em;
-      margin-bottom: 0;
-      margin-left: 1em;
-      text-shadow: 1px 1px 0 black; }
     #menu .menu-heading .help {
       color: #fff;
       text-decoration: none;
@@ -153,6 +147,10 @@ body {
   #menu #users {
     margin: 0 1em;
     text-shadow: 1px 1px 0 black; }
+    #menu #users h2 {
+      text-align: left;
+      font-size: 1.1em;
+      margin-bottom: 0; }
     #menu #users #users-list {
       overflow-y: scroll; }
       #menu #users #users-list ul {

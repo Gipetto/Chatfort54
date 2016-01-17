@@ -8,7 +8,7 @@ define(['jquery'], function($) {
 		$input = $('#message-input', $main),
 		$inputTextarea = $('#chat-input', $input),
 		$menu = $('#menu'),
-		$users = $('#users-list', $menu),
+		$users = $('#users', $menu),
 		$menuHeading = $('.menu-heading', $menu),
 		$menuFooter = $('.menu-footer', $menu);
 
