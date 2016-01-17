@@ -44,7 +44,11 @@ define(['jquery', 'lib/ui', 'marked'], function($, ui, marked) {
 					});
 				});
 			} else {
-				window.chatApp.addNotice('**TLDR Command not found:** ' + message);
+				window.chatApp.addRawMessage({
+					'author': 'tldr',
+					'body': '<p><i class="fa fa-ban"></i> TLDR Command not found: ' + message + '</p>',
+					'timestamp': new Date()
+				});
 			}
 		};
 

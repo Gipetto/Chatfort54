@@ -1,3 +1,8 @@
+# Next
+
+- Fix `/tldr` not found message.
+
+
 # 0.2.8
 
 - Fix Base64 decoding for Safari.
