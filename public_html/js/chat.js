@@ -1,3 +1,11 @@
+function loadCss(url) {
+	var link = document.createElement("link");
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	link.href = url;
+	document.getElementsByTagName("head")[0].appendChild(link);
+}
+
 requirejs.config({
 	baseUrl: 'js',
 	urlArgs: "v=" +  (new Date()).getTime(),
@@ -48,5 +56,12 @@ require(['commands/test'], function(Tester) {
 	'use strict';
 	$(window).on('chat-init', function() {
 		new Tester();
+	});
+});
+
+require(['commands/tldr'], function(Tldr) {
+	'use strict';
+	$(window).on('chat-init', function() {
+		new Tldr();
 	});
 });

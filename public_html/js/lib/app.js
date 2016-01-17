@@ -34,6 +34,14 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 			_commands[command] = eventTrigger;
 		};
 
+		this.addRawMessage = function(message) {
+			_options.chatBox.addRawMessage(message);
+		};
+
+		this.addMessage = function(message) {
+			_options.chatBox.addMessage(message);
+		};
+
 		this.addInfoMessage = function(message) {
 			_options.chatBox.addInfo(message);
 		};
@@ -103,7 +111,8 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 				_channel.updateLastConsumedMessageIndex(lastMessage.index);
 			}).catch(function (rejection) {
 				console.log(rejection);
-				_options.chatBox.addError('There was an error loading message history: ' + rejection);
+				var error = rejection.body.message + ' (' + rejection.body.status + ')';
+				_options.chatBox.addError('There was an error loading message history: ' + error);
 			});
 		};
 

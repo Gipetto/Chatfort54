@@ -30,6 +30,12 @@ define(['jquery', 'lib/message'], function($, ChatMessage) {
 			return users[userName];
 		};
 
+		this.addRawMessage = function(message, shouldPrintMeta) {
+			message.isRaw = true;
+			var _message = new ChatMessage(message, shouldPrintMeta || true);
+			this.chatBox.append(_message.format());
+		};
+
 		this.addMessage = function (message) {
 			var _shouldPrintMeta = true;
 

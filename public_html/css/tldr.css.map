@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGG,2CAAM;EACL,gBAAgB,EAAE,OAAO;EACzB,MAAM,EAAE,iBAAiB;EACzB,aAAa,EAAE,GAAG;EAClB,MAAM,EAAE,qBAAqB;EAC7B,OAAO,EAAE,KAAK;EAEd,wDAAa;IACZ,WAAW,EAAE,CAAC;EAGf,kGAAW;IACV,WAAW,EAAE,KAAK;EAGnB,2DAAgB;IACf,WAAW,EAAE,IAAI",
+"sources": ["../scss/tldr.scss"],
+"names": [],
+"file": "tldr.css"
+}

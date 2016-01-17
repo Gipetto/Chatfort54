@@ -65,12 +65,12 @@ define(['jquery', 'marked'], function($, marked) {
 
 		// format this message for HTML output
 		var formatMessage = function (messageBody) {
-			var $msg = $('<span></span>', {
+			var $msg = $('<div></div>', {
 				'class': 'message',
 				'html': messageBody,
-				'data-message-id': message.index,
-				'data-message-sid': message.sid,
-				'data-message-timestamp': message.timestamp.valueOf()
+				'data-message-id': message.index || '',
+				'data-message-sid': message.sid || '',
+				'data-message-timestamp': message.timestamp ? message.timestamp.valueOf() : ''
 			});
 
 			if (_printMeta) {
@@ -118,6 +118,8 @@ define(['jquery', 'marked'], function($, marked) {
 
 			if (_message.isEmote) {
 				_text = emote(message.body);
+			} else if (_message.isRaw) {
+				_text = _message.body;
 			} else {
 				_text = processMessage(_message.body);
 			}
