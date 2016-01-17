@@ -16,6 +16,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 		var _options = $.extend(_defaults, options);
 		var _accessManager;
 		var _messagingClient;
+		var _twilsockClient;
 		var _channel;
 		var _browserFingerprint;
 
@@ -87,6 +88,10 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 			return _options.identity;
 		};
 
+		this.getTwilsockClient = function() {
+			return _twilsockClient;
+		};
+
 		var loadMessageHistory = function () {
 			var messagesPromise = _channel.getMessages(_options.numHistoryMessages);
 			messagesPromise.then(function (messages) {
@@ -142,23 +147,51 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 		var refreshToken = function (data) {
 			console.log('new token');
 			console.dir(data);
-			_accessManager.updateToken(data.token);
+			var updatePromise =_accessManager.updateToken(data.token);
+			updatePromise.catch(function(error) {
+				_options.chatBox.addError('Could not update JOT Token. Please refresh your browser. Error: ' + error);
+			});
 		};
 
 		var initCallback = function (data) {
 			_options.chatBox.addInfo('Initializing&hellip;');
 			_options.identity = data.identity;
 
+			// Set our own Twilsock client that we can listen to
+			_twilsockClient = new Twilio.IPMessaging.TwilsockClient(data.token);
+
+			_twilsockClient.on('connected', function(e) {
+				console.log('connected');
+				console.log(e);
+			});
+
+			_twilsockClient.on('disconnected', function(e) {
+				console.log('disconnected');
+				console.log(e);
+				_options.chatBox.addError('You have been disconnected. Error: ' + e);
+				_twilsockClient.connect();
+			});
+
+			_twilsockClient.on('remoteClose', function(e) {
+				console.log('remoteClose');
+				console.log(e);
+				_options.chatBox.addError('The remote host closed the session. Error: ' + e);
+			});
+
 			// Initialize the IP messaging client
 			_accessManager = new Twilio.AccessManager(data.token);
-			_messagingClient = new Twilio.IPMessaging.Client(_accessManager);
+			_messagingClient = new Twilio.IPMessaging.Client(_accessManager, {
+				twilsockClient: _twilsockClient
+			});
 
 			_messagingClient.on('tokenExpired', function () {
 				$.getJSON('token', {
 						'fingerprint': _browserFingerprint
-					}, refreshToken)
+					}, function(data) {
+						refreshToken(data);
+					})
 					.fail(function (e) {
-						_options.chatBox.addError('Could not update JOT token. Please refresh your browser. Error: ' + e);
+						_options.chatBox.addError('Could not retrieve updated JOT token. Please refresh your browser. Error: ' + e);
 						console.log(e);
 					});
 			});
