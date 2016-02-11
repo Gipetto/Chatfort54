@@ -1,5 +1,7 @@
-define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
+define(['jquery', 'fingerprint2', 'rollbar'], function($, Fingerprint2, Rollbar) {
 	'use strict';
+
+	var rollbar = Rollbar.init(_rollbarConfig);
 
 	return function ChatApp(options) {
 		var _defaults = {
@@ -26,6 +28,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 				}, initCallback)
 				.fail(function (e) {
 					_options.chatBox.addError('Could not retrieve JOT token. Please refresh your browser.');
+					rollbar.critical('Could not retrieve initial JOT token', e);
 					console.log(e);
 				});
 		};
@@ -85,6 +88,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 			var messagePromise = _channel.sendMessage(message);
 			messagePromise.catch(function(rejection) {
 				_options.chatBox.addError('Could not send message: ' + rejection);
+				rollbar.error('Could not send message', rejection);
 			});
 		};
 
@@ -113,6 +117,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 				console.log(rejection);
 				var error = rejection.body.message + ' (' + rejection.body.status + ')';
 				_options.chatBox.addError('There was an error loading message history: ' + error);
+				rollbar.error('There was an error loading message history', rejection);
 			});
 		};
 
@@ -159,6 +164,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 			var updatePromise =_accessManager.updateToken(data.token);
 			updatePromise.catch(function(error) {
 				_options.chatBox.addError('Could not update JOT Token. Please refresh your browser. Error: ' + error);
+				rollbar.critical('Could not update JOT Token', error);
 			});
 		};
 
@@ -178,6 +184,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 				console.log('disconnected');
 				console.log(e);
 				_options.chatBox.addError('You have been disconnected. Error: ' + e);
+				rollbar.error('Client disconnected', e);
 				_twilsockClient.connect();
 			});
 
@@ -185,6 +192,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 				console.log('remoteClose');
 				console.log(e);
 				_options.chatBox.addError('The remote host closed the session. Error: ' + e);
+				rollbar.error('Remote host closed the session', e);
 			});
 
 			// Initialize the IP messaging client
@@ -201,6 +209,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 					})
 					.fail(function (e) {
 						_options.chatBox.addError('Could not retrieve updated JOT token. Please refresh your browser. Error: ' + e);
+						rollbar.critical('Could not retrieve updated JOT token', e);
 						console.log(e);
 					});
 			});
@@ -223,6 +232,7 @@ define(['jquery', 'fingerprint2'], function($, Fingerprint2) {
 				console.log(_messagingClient);
 			}).catch(function (rejection) {
 				_options.chatBox.addError('There was an error setting up the channel. Please refresh your browser. Error: ' + rejection);
+				rollbar.critical('There was an error setting up the channel', rejection);
 				console.log(rejection);
 			});
 

@@ -1,2 +1,14 @@
+<script>
+	var _rollbarConfig = {
+		accessToken: '{{ app.config.rollbar.token }}',
+		captureUncaught: true,
+		payload: {
+			environment: '{{ app.config.app.env }}',
+			person: {
+				username: '{{ user.getUsername() }}'
+			}
+		}
+	};
+</script>
 <script src="//media.twiliocdn.com/sdk/rtc/js/ip-messaging/v{{ constant('IPMESSAGING_VERSION') }}/twilio-ip-messaging.{% if app.config.twilio.loadMinifiedJavascript %}min.{% endif %}js"></script>
 <script src="https://cdn.jsdelivr.net/requirejs/2.1.22/require.min.js" data-main="js/chat"></script>
