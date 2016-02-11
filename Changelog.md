@@ -2,6 +2,7 @@
 
 - Fix `/tldr` not found message.
 - Move info messages in to Status Box.
+- Add rudimentary Rollbar integration.
 
 
 # 0.2.8
