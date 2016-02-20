@@ -1,4 +1,9 @@
-# Next
+# 0.3.1
+
+- Adding in missing JS load that appears to have been previously handled by parent ip-messaging library.
+
+
+# 0.3.0
 
 - Fix `/tldr` not found message.
 - Move info messages in to Status Box.
