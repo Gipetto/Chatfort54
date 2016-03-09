@@ -1,3 +1,8 @@
+# 0.3.2
+
+- Improved reconnection logic.
+
+
 # 0.3.1
 
 - Adding in missing JS load that appears to have been previously handled by parent ip-messaging library.
