@@ -48,14 +48,15 @@ define(['jquery', 'lib/message', 'lib/day-separator'], function($, ChatMessage, 
 
 			message.localizedDate = new Date(message.timestamp.valueOf());
 
-			if (lastMessage && (message.localizedDate.getDay() != lastMessage.localizedDate.getDay())) {
-				var sep = new ChatDaySeparator(message.localizedDate.getDay());
-				this.chatBox.append(sep.format());
-			}
-
 			if (lastMessage && (message.author == lastMessage.author) &&
 				(message.localizedDate.getTime() < (lastMessage.localizedDate.getTime() + omitMetaTimeout))) {
 				_shouldPrintMeta = false;
+			}
+
+			if (lastMessage && (message.localizedDate.getDay() != lastMessage.localizedDate.getDay())) {
+				var sep = new ChatDaySeparator(message.localizedDate.getDay());
+				this.chatBox.append(sep.format());
+				_shouldPrintMeta = true;
 			}
 
 			if (lastMessage && lastMessage.isEmote) {

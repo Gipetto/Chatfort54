@@ -1,4 +1,4 @@
-# 0.3.3
+# 0.4
 
 - clean up unused imports
 - improved error handling when loading message history
