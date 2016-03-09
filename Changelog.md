@@ -1,3 +1,12 @@
+# 0.3.3
+
+- clean up unused imports
+- improved error handling when loading message history
+- localize message date display relative to browser
+- add day separators
+- (attempt to) assign consistent colors to users
+
+
 # 0.3.2
 
 - Improved reconnection logic.

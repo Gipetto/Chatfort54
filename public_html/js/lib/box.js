@@ -1,6 +1,16 @@
 define(['jquery', 'lib/message', 'lib/day-separator'], function($, ChatMessage, ChatDaySeparator) {
 	'use strict';
 
+	/********************************************************
+	 Name: str_to_color
+	 Description: create a hash from a string then generates a color
+	 Usage: alert('#'+str_to_color("Any string can be converted"));
+	 author: Brandon Corbin [code@icorbin.com]
+	 website: http://icorbin.com
+	 ********************************************************/
+	function string_to_color(a,b){"use strict";var b="number"==typeof b?b:-10,c=function(a){for(var b=0,c=0;c<a.length;c++)b=a.charCodeAt(c)+((b<<5)-b);return b},d=function(a,b){var c=parseInt(a,16),d=Math.round(2.55*b),e=(c>>16)+d,f=(255&c>>8)+d,g=(255&c)+d;return(16777216+65536*(255>e?1>e?0:e:255)+256*(255>f?1>f?0:f:255)+(255>g?1>g?0:g:255)).toString(16).slice(1)},e=function(a){var b=(255&a>>24).toString(16)+(255&a>>16).toString(16)+(255&a>>8).toString(16)+(255&a).toString(16);return b};return d(e(c(a)),b)}
+
+
 	return function ChatBox(options) {
 		this.chatBox = $(options.selector);
 		var colors = [];
@@ -19,10 +29,7 @@ define(['jquery', 'lib/message', 'lib/day-separator'], function($, ChatMessage, 
 				return users[userName];
 			}
 
-			var color = randomColor();
-			while ($.inArray(color, colors) >= 0) {
-				color = randomColor();
-			}
+			var color = '#' + string_to_color(userName, -30);
 
 			users[userName] = color;
 			colors.push(color);
