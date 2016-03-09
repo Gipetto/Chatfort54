@@ -1,6 +1,7 @@
 # 0.3.2
 
 - Improved reconnection logic.
+- Fix rollbar js loading
 
 
 # 0.3.1
