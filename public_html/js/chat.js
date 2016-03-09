@@ -17,7 +17,7 @@ requirejs.config({
 	}
 });
 
-require(['lib/app', 'lib/message', 'lib/box', 'lib/user-list'], function(ChatApp, ChatMessage, ChatBox, UserList) {
+require(['lib/app', 'lib/box', 'lib/user-list'], function(ChatApp, ChatBox, UserList) {
 	'use strict';
 
 	window.chatApp = new ChatApp({

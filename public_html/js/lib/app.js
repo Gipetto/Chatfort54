@@ -116,9 +116,19 @@ define(['jquery', 'fingerprint2', 'rollbar'], function($, Fingerprint2, Rollbar)
 					_options.userList.addUser(message.author);
 				});
 				var lastMessage = messages.pop();
-				_channel.updateLastConsumedMessageIndex(lastMessage.index);
+				if (lastMessage) {
+					_channel.updateLastConsumedMessageIndex(lastMessage.index);
+				}
 			}).catch(function (rejection) {
-				var error = rejection.body.message + ' (' + rejection.body.status + ')';
+				var error;
+
+				if ($.type(rejection) == 'error') {
+					error = rejection.stack;
+					console.dir(rejection);
+				} else {
+					error = rejection.body.message + ' (' + rejection.body.status + ')';
+				}
+
 				_options.chatBox.addError('There was an error loading message history: ' + error);
 				rollbar.error('There was an error loading message history', rejection);
 			});
