@@ -101,8 +101,9 @@ define(['jquery', 'marked'], function($, marked) {
 		};
 
 		var getTime = function (dateObj) {
-			var hour = dateObj.getHours();
-			var minutes = dateObj.getMinutes();
+			var _date = new Date(dateObj.valueOf());
+			var hour = _date.getHours();
+			var minutes = _date.getMinutes();
 			var meridian = hour >= 12 ? 'PM' : 'AM';
 			return ((hour + 11) % 12 + 1) + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + meridian;
 		};
