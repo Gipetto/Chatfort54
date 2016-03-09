@@ -1,4 +1,4 @@
-define(['jquery', 'lib/message'], function($, ChatMessage) {
+define(['jquery', 'lib/message', 'lib/day-separator'], function($, ChatMessage, ChatDaySeparator) {
 	'use strict';
 
 	return function ChatBox(options) {
@@ -39,8 +39,15 @@ define(['jquery', 'lib/message'], function($, ChatMessage) {
 		this.addMessage = function (message) {
 			var _shouldPrintMeta = true;
 
+			message.localizedDate = new Date(message.timestamp.valueOf());
+
+			if (lastMessage && (message.localizedDate.getDay() != lastMessage.localizedDate.getDay())) {
+				var sep = new ChatDaySeparator(message.localizedDate.getDay());
+				this.chatBox.append(sep.format());
+			}
+
 			if (lastMessage && (message.author == lastMessage.author) &&
-				(message.timestamp.getTime() < (lastMessage.timestamp.getTime() + omitMetaTimeout))) {
+				(message.localizedDate.getTime() < (lastMessage.localizedDate.getTime() + omitMetaTimeout))) {
 				_shouldPrintMeta = false;
 			}
 

@@ -192,6 +192,19 @@ body {
       color: #a94442;
       background-color: #f2dede;
       border-color: #ebccd1; }
+    .messages-scroller #messages .day-separator {
+      color: lightgray;
+      font-size: 0.9em;
+      margin: 20px 0;
+      text-align: center; }
+      .messages-scroller #messages .day-separator span {
+        background: white;
+        display: inline-block;
+        padding: 2px 5px; }
+      .messages-scroller #messages .day-separator hr {
+        border-width: 0 0 1px 0;
+        border-bottom: 1px solid lightgray;
+        margin: -10px 10px 0 10px; }
     .messages-scroller #messages .message-container {
       font-size: 0.9em;
       line-height: 2em; }
