@@ -1,3 +1,7 @@
+# 0.4.1
+
+- Upgrade Rollbar JS to 1.8.5
+
 # 0.4
 
 - clean up unused imports

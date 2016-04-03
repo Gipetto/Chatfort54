@@ -13,7 +13,7 @@ requirejs.config({
 		'jquery': '//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min',
 		'fingerprint2': '//cdn.jsdelivr.net/fingerprintjs2/1.0.3/fingerprint2.min',
 		'marked': '//cdn.jsdelivr.net/marked/0.3.5/marked.min',
-		'rollbar': 'rollbar.umd.nojson-1.3-min'
+		'rollbar': 'rollbar.umd.nojson-1.8.5-min'
 	}
 });
 
